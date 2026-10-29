@@ -22,9 +22,16 @@ _Swim. Bike. Run. One clock, every leg._
 
 </div>
 
-## Branch Notes: `dev`
+## Branch Notes: `feature/core-engine`
 
 **Purpose**: Build the core logic for Sikad: a segmented session timer that lets an athlete move between disciplines (swim, bike, run, plus optional transitions) and get a timed breakdown at the end. This branch contains logic only, with no UI, no hardware APIs and no geolocation.
+
+**Notes**
+
+    - Packaged as `v.1.0.0` 
+
+
+**Status**: In Progress
 
 ## Scope
 
