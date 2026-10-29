@@ -1,7 +1,7 @@
 <div align="center">
     <img title="Sikad | Triathlon App" width="100" height="100" alt="sikad-triathlon-app-logo-agentic" src="https://github.com/user-attachments/assets/d98a7885-379e-4ba1-881d-3ff8394d9129" />
 
-# Sikad | Triathlon App
+# Sikad | Triathlon Segment Timer
 
 _Swim. Bike. Run. One clock, every leg._
 
@@ -24,80 +24,75 @@ _Swim. Bike. Run. One clock, every leg._
 
 ## Branch Notes: `dev`
 
-**Purpose**: Primary integration branch for active development. Features, fixes, and refactors are merged here before being promoted to production.
+**Purpose**: Build the core logic for Sikad: a segmented session timer that lets an athlete move between disciplines (swim, bike, run, plus optional transitions) and get a timed breakdown at the end. This branch contains logic only, with no UI, no hardware APIs and no geolocation.
 
-**Workflow**: `feature/* → dev → main`
+## Scope
 
-**Notes**
+**In scope**
 
-- Keep builds passing.
-- Merge tested work only.
-- Sync regularly with main.
+- `Timer`: injectable clock wrapper so time is deterministic in tests
+- `Segment`: a single timed leg with a type, start time, end time and duration
+- `Session`: start, next segment, pause, resume, finish, elapsed time and summary
+- Input validation and clear error messages for invalid operations
+- Jest unit tests for all of the above
+**Out of scope**
+- User interface (planned for the React + Vite + TypeScript iteration)
+- Geolocation, distance and pace
+- Persistence, accounts and session history
 
-### Project Status
+## Planned commits / tasks
 
-| Iteration | Stack | Scope |
-|-----------|-------|-------|
-| **1 (current)** | Vanilla JavaScript (ES2022), Jest | Core logic only: a segmented timer, no UI |
-| 2 (planned) | React + Vite + TypeScript | UI built on top of the core logic |
-| 3 (planned) | Geolocation | Distance, pace and route per segment |
+- [ ] Project setup: `package.json`, ES modules, Jest config
+- [ ] `Timer` with injectable clock, plus tests
+- [ ] `Segment` (type validation, duration calculation), plus tests
+- [ ] `Session` lifecycle: start, finish and status guards
+- [ ] `Session.nextSegment()` closes the current segment and opens the next with no time gap
+- [ ] `Session.pause()` / `resume()` with paused time excluded from durations
+- [ ] `Session.getSummary()`: per-segment durations, total and percentage of total
+- [ ] Edge-case tests (see below)
+- [ ] Class diagram added to `/docs/uml`
+- [ ] README updated to match the final API
 
-This first iteration deliberately has **no user interface, no hardware APIs and no geolocation**. The goal is a well-designed, well-tested core that a front end can use later.
+## Design notes
 
-### Features (Iteration 1)
+- Time is read through an injected clock function, never by calling `Date.now()` directly in business logic.
+- Durations are stored in milliseconds.
+- Allowed segment types: `swim`, `bike`, `run`, `transition`. Segments may be recorded in any order to also support duathlon.
+- `Session` status moves through: `idle` → `running` ⇄ `paused` → `finished`.
+- Invalid transitions (for example `finish()` before `start()`) throw a descriptive `Error`.
 
-- **Start a session** and begin timing immediately.
-- **Segments** for each leg (`run`, `bike`, `swim`, plus optional `transition`), recorded in any order, so it supports duathlon or other multisport formats as well as the standard triathlon.
-- **Cut to the next segment** with one call; the previous segment closes and the next one opens with no gap.
-- **Pause and resume** the session without losing elapsed time.
-- **Finish** the session and get a summary: time per segment, total time and each segment's share of the total.
-- **Input validation** with clear errors (invalid segment types, starting twice, finishing a session that never started, and so on).
-- **Injectable clock** so every time-based behaviour is deterministic in tests.
+## Edge cases to cover in tests
 
-### Planned (later iterations)
- 
-- GPS tracking: distance, pace, speed and route map per segment
-- Saved session history and personal bests per discipline
-- Transition (T1/T2) analysis
-- Goal times and race-day pacing targets
+- Calling `start()` twice
+- Calling `nextSegment()` before `start()` or after `finish()`
+- Unknown segment type
+- Pausing across a segment cut
+- Finishing while paused
+- Zero-length segments
+- Summary with a single segment
 
-## Design
+## Definition of done
 
-Core classes (full UML diagrams live in `/docs`):
+- All planned tasks above are checked off
+- All Jest tests pass (`npm test`) with sensible coverage
+- Class diagram committed in `/docs/uml`
+- README example matches the real API
+- No code from other sources without an acknowledgement comment in the file
 
-```mermaid
-classDiagram
-    class Session {
-        -segments: Segment[]
-        -status: string
-        +start()
-        +nextSegment(type)
-        +pause()
-        +resume()
-        +finish()
-        +getElapsed() number
-        +getSummary() object
-    }
-    class Segment {
-        +type: string
-        +startTime: number
-        +endTime: number
-        +getDuration() number
-    }
-    class Timer {
-        -clock: Function
-        +now() number
-    }
-    Session "1" o-- "*" Segment
-    Session --> Timer
+## Merge plan
+
+1. Keep commits small and focused, with one feature per commit.
+2. Run `npm test` before every push.
+3. Open a PR into `main` when the definition of done is met.
+4. Squash or merge as your course or tutor prefers, then delete the branch.
+
+## Suggested commit message style
+
+```bash
+feat(session): add nextSegment to close and open segments
+test(session): cover pause across segment cut
+docs(uml): add class diagram
 ```
-
-**Principles**
-
-- Small classes with a single responsibility.
-- ES modules, `const`/`let`, classes with private fields (`#field`), and other ES2022 features where they genuinely help.
-- Time is accessed through an injected clock function, never by calling `Date.now()` directly inside business logic.
-- No global state; everything is testable in isolation.
 
 ## Launching the app locally
 
