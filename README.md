@@ -17,15 +17,61 @@ A modern music catalogue application for organising, browsing, and discovering m
 
 </div>
 
-## Branch Notes: `main`
+## Branch Notes: `dev`
 
 **Purpose**: Primary integration branch for active development. Features, fixes, and refactors are merged here before being promoted to production.
+
+**Workflow**: `feature/* → dev → main`
 
 **Notes**
 
 - Keep builds passing.
 - Merge tested work only.
 - Sync regularly with main.
-- Contains `docs/` directory for diagrams
 
-**Status**: Polishing UI (In Progress)
+## Launching the app locally
+
+### Requirements
+
+- **Operating System:**
+
+  - (a) Windows 10 or Windows 11 environment  
+    &nbsp;&nbsp;&nbsp;&nbsp;- WSL1 installed to launch Linux Ubuntu environment  
+    &nbsp;&nbsp;&nbsp;&nbsp;- Ubuntu LTS 22.04 distro installed
+  - (b) Linux Ubuntu (**preferred**)
+
+- **Software:**
+  - Visual Studio Code installed
+  - Node.js and Git installed
+
+### Main Steps
+
+1. Cloning the repository:
+
+```bash
+git clone https://github.com/arzen1kos/triathlon-app.git
+
+cd triathlon-app
+```
+
+2. Installing the package for dependencies
+
+In the parent directory, run the following commands:
+
+```bash
+rm -rf node_modules
+rm -rf package-lock.json
+npm install
+```
+
+3. Launching the app
+
+In the parent directory, run the following commands:
+
+```bash
+npm run dev
+```
+
+---
+
+Created by Arsenie — 2024
