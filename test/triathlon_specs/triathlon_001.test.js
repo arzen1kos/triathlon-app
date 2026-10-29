@@ -1,58 +1,58 @@
-/* eslint-disable no-undef */
-/* eslint no-undef: "error" */
+/* eslint linebreak-style: ["error", "unix"] */
 
-import Triathlon from '../../src/triathlon'
+import Triathlon from '../../src/triathlon' // Whole
 
 describe('Triathlon with required fields', () => {
-    let theTriathlon
+	let theTriathlon
 
-    beforeEach(() => {
-        theTriathlon = new Triathlon()
-    })
+	beforeEach(() => {
+		theTriathlon = new Triathlon()
+	})
 
-    test('should have a .date property', () => {
-        expect(
-            Object.hasOwn(theTriathlon, 'date'),
-        ).toBeTruthy()
-    })
+	test('should have a .date property', () => {
+		expect(
+			Object.hasOwn(theTriathlon, 'date'),
+		).toBeTruthy()
+	})
 
-    test('should have a .location property', () => {
-        expect(
-            Object.hasOwn(theTriathlon, 'location'),
-        ).toBeTruthy()
-    })
+	test('should have a .location property', () => {
+		expect(
+			Object.hasOwn(theTriathlon, 'location'),
+		).toBeTruthy()
+	})
 
-    test('should have a .swimDistance property', () => {
-        expect(
-        Object.hasOwn(theTriathlon, 'swimDistance'),
-        ).toBeTruthy()
-    })
+	test('should have a .swimDistance property', () => {
+		expect(
+			Object.hasOwn(theTriathlon, 'swimDistance'),
+		).toBeTruthy()
+	})
 
-    test('should have a .runDistance property', () => {
-        expect(
-            Object.hasOwn(theTriathlon, 'runDistance'),
-        ).toBeTruthy()
-    })
+	test('should have a .runDistance property', () => {
+		expect(
+			Object.hasOwn(theTriathlon, 'runDistance'),
+		).toBeTruthy()
+	})
 
-    test('should have a .bikeDistance property', () => {
-        expect(
-            Object.hasOwn(theTriathlon, 'bikeDistance'),
-        ).toBeTruthy()
-    })
+	test('should have a .bikeDistance property', () => {
+		expect(
+			Object.hasOwn(theTriathlon, 'bikeDistance'),
+		).toBeTruthy()
+	})
 
-    test('should have a .participantCount property', () => {
-        expect(
-            Object.hasOwn(theTriathlon, 'participantCount'),
-        ).toBeTruthy()
-    })
+	test('should have a .participantCount property', () => {
+		expect(
+			Object.hasOwn(theTriathlon, 'participantCount'),
+		).toBeTruthy()
+	})
 
-    test('should have a .allParticipants property', () => {
+	test('should have a .allParticipants property', () => {
         expect(
             Object.hasOwn(theTriathlon, 'allParticipants'),
         ).toBeTruthy()
     })
 
-    test('should have an array for the .allParticipants ', () => {
+	test('should have an array for the .allParticipants ', () => {
         expect(Array.isArray(theTriathlon.allParticipants)).toBeTruthy()
     })
+
 })

@@ -1,5 +1,4 @@
-/* eslint-disable no-undef */
-/* eslint no-undef: "error" */
+/* eslint linebreak-style: ["error", "unix"] */
 
 import Triathlon from '../../src/triathlon'
 
@@ -39,7 +38,7 @@ describe('localStorage with Jest', () => {
         })
 
         test('should load all athlete data from localStorage', () => {
-            const expected = {
+			const expected = {
                 "01": {
                     id: "11",
                     firstname: "Edward",
@@ -51,7 +50,7 @@ describe('localStorage with Jest', () => {
                 }
             }
             const actual = theTriathlon.loadAllLocalStorage()
-            expect(actual).toEqual(expected)
-        })
+			expect(actual).toEqual(expected)
+		})
     })
 })

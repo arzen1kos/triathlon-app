@@ -1,12 +1,11 @@
-/* eslint-disable no-undef */
-/* eslint no-undef: "error" */
+/* eslint linebreak-style: ["error", "unix"] */
 
 import Triathlon from '../../src/triathlon'
 
 describe('Adding Athletes to Triathlon', () => {
     let theTriathlon
     
-    beforeEach(() => {
+	beforeEach(() => {
         const testDate = new Date('March 17, 2024')
         const testLocation = 'Everdeen Sport Centre'
         theTriathlon = new Triathlon(testDate, testLocation)
@@ -36,7 +35,7 @@ describe('Adding Athletes to Triathlon', () => {
             const actual = theTriathlon.toString()
             expect(actual).toBe(expected)
         })
-    })
+	})
 
     describe('a Triathlon with 3 athletes in it', () => {
         beforeEach(() => {
@@ -84,9 +83,9 @@ describe('Adding Athletes to Triathlon', () => {
                 expect(theTriathlon.allParticipants[0].lastName).toBe("Hugo")
                 expect(theTriathlon.allParticipants[1].lastName).toBe("Herrera")
             })
-
+            
             test('should log the non-unique warning', () => {
-                const consoleLogSpy = jest.spyOn(console, 'log')
+                consoleLogSpy = jest.spyOn(console, 'log')
                 theTriathlon.sortParticipants()
                 expect(consoleLogSpy).toHaveBeenCalledWith("Warning: Non-unique IDs detected!")
                 consoleLogSpy.mockRestore()

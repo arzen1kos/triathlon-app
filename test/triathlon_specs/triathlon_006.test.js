@@ -1,5 +1,4 @@
-/* eslint-disable no-undef */
-/* eslint no-undef: "error" */
+/* eslint linebreak-style: ["error", "unix"] */
 
 import Triathlon from '../../src/triathlon'
 
@@ -26,22 +25,22 @@ describe('Analysing all athlete data.', () => {
     })
 
     test('should return false if an athlete speed is below average of 30.91kph', () => {
-        const targetId = "08"
-        const actual = theTriathlon.isAboveAvg(targetId)
+    	const targetId = "08"
+    	const actual = theTriathlon.isAboveAvg(targetId)
         const expected = false
-        expect(actual).toBe(expected)
+    	expect(actual).toBe(expected)
     })
 
     test('should return true if an athlete speed is above average of 30.91kph', () => {
-        const targetId = "02"
-        const actual = theTriathlon.isAboveAvg(targetId)
+    	const targetId = "02"
+    	const actual = theTriathlon.isAboveAvg(targetId)
         const expected = true
-        expect(actual).toBe(expected)
+    	expect(actual).toBe(expected)
     })
 
     test('should get all athletes with above average speed', () => {
-        const actual = theTriathlon.getAboveAvg()
+    	const actual = theTriathlon.getAboveAvg()
         const expected = "AvgSpeed: 30.91\n02 - Harry: 31.27 kph\n,06 - Robert: 34.5 kph\n"
-        expect(actual).toBe(expected)
+    	expect(actual).toBe(expected)
     })
 })

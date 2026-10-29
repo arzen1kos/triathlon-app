@@ -1,7 +1,6 @@
-/* eslint-disable no-undef */
-/* eslint no-undef: "error" */
+/* eslint linebreak-style: ["error", "unix"] */
 
-import Athlete from '../../src/athlete'
+import Athlete from '../../src/athlete' // Part
 
 describe('Handle all omitted or undefined parameters with default values', () => {
     const unknown = undefined

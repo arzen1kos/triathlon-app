@@ -1,5 +1,4 @@
-/* eslint-disable no-undef */
-/* eslint no-undef: "error" */
+/* eslint linebreak-style: ["error", "unix"] */
 
 import Triathlon from '../../src/triathlon'
 import Athlete from '../../src/athlete'

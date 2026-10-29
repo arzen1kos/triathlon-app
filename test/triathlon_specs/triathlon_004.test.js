@@ -1,12 +1,11 @@
-/* eslint-disable no-undef */
-/* eslint no-undef: "error" */
+/* eslint linebreak-style: ["error", "unix"] */
 
 import Triathlon from '../../src/triathlon'
 
 describe('A Triathlon with filters and search', () => {
     let theTriathlon
     
-    beforeEach(() => {
+	beforeEach(() => {
         const testDate = new Date('March 17, 2024')
         const testLocation = 'Everdeen Sport Centre'
         theTriathlon = new Triathlon(testDate, testLocation)

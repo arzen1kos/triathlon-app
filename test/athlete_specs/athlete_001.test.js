@@ -1,7 +1,6 @@
-/* eslint-disable no-undef */
-/* eslint no-undef: "error" */
+/* eslint linebreak-style: ["error", "unix"] */
 
-import Athlete from '../../src/athlete'
+import Athlete from '../../src/athlete' // Part
 
 describe('Training Athletes logs', () => {
 	let newAthlete
@@ -21,13 +20,13 @@ describe('Training Athletes logs', () => {
 				Object.hasOwn(newAthlete, 'firstName'),
 			).toBeTruthy()
 		})
-
+		
 		test('should have .lastName property', () => {
 			expect(
 				Object.hasOwn(newAthlete, 'lastName'),
 			).toBeTruthy()
 		})
-
+		
 		test('should have .age property', () => {
 			expect(
 				Object.hasOwn(newAthlete, 'age'),
